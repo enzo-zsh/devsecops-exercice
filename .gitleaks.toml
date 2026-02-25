@@ -1,0 +1,15 @@
+title = "Configuration custom Gitleaks"
+
+# 1. Règle personnalisée pour détecter le secret custom
+[[rules]]
+id = "custom-corp-secret"
+description = "Détecte les secrets internes de l'entreprise"
+regex = '''MY_CORP_SECRET_[A-Z0-9]+'''
+secretGroup = 0
+entropy = 3.0
+
+# 2. Liste blanche pour exclure le faux positif
+[allowlist]
+description = "Ignorer les secrets d'environnement de test"
+regexTarget = "match"
+regexes = ['''MY_CORP_SECRET_TEST_ENV''']
